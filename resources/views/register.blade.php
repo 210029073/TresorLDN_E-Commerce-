@@ -22,5 +22,63 @@
     </head>
     <body class="antialiased">
         <h1>Register Page</h1>
+        <form method="POST" action="{{ route('register.custom') }}">
+            @csrf
+            <?php
+            use App\Http\Controllers\CustomerController;
+            ?>
+            <div>
+                <div>
+                    <label for="customer_first_name">Customer First Name:</label>
+                    <input id="customer_first_name" type="text" class="btn-outline-info form-control @error('customer_first_name')
+                            is-invalid
+@enderror" name="email" value="{{old('customer_first_name')}}" autocomplete="customer_first_name" autofocus>
+                </div>
+
+                <div>
+                    <label for="customer_last_name">Customer Last Name:</label>
+                    <input id="customer_last_name" type="text" class="btn-outline-info form-control @error('customer_last_name')
+                            is-invalid
+@enderror" name="email" value="{{old('customer_last_name')}}" autocomplete="customer_last_name" autofocus>
+                </div>
+
+                <div>
+                    <label for="customer_address_line_1">Customer Address Line 1:</label>
+                    <input id="customer_address_line_1" type="text" class="btn-outline-info form-control @error('customer_address_line_1')
+                            is-invalid
+@enderror" name="email" value="{{old('customer_address_line_1')}}" autocomplete="customer_address_line_1" autofocus>
+                </div>
+
+                <div>
+                    <label for="customer_address_line_2">Customer Address Line 2:</label>
+                    <input id="customer_address_line_2" type="text" class="btn-outline-info form-control @error('customer_address_line_2')
+                            is-invalid
+@enderror" name="email" value="{{old('customer_address_line_2')}}" autocomplete="customer_address_line_2" autofocus>
+                </div>
+
+                <div>
+                    <label for="customer_postcode">Customer Postcode:</label>
+                    <input id="customer_postcode" type="text" class="btn-outline-info form-control @error('customer_postcode')
+                            is-invalid
+@enderror" name="email" value="{{old('customer_postcode')}}" autocomplete="customer_postcode" autofocus>
+                </div>
+
+                <div>
+                    <label for="email">E-mail:</label>
+                    <input id="email" type="email" class="btn-outline-info form-control @error('email')
+                            is-invalid
+@enderror" name="email" value="{{old('email')}}" autocomplete="email" autofocus>
+                </div>
+
+                <div>
+                    <label for="password">Password</label>
+
+                    <input id="password" type="password" class="form-control @error('password')
+                            is-invalid
+@enderror" name="password" value="{{old('password')}}" autocomplete="current-password">
+                </div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
     </body>
 </html>

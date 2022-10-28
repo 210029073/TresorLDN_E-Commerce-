@@ -15,14 +15,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('orderline', function (Blueprint $table) {
-            $table->id('orderline_ref_no');
-            $table->foreignId('order_ref_no');
-            $table->foreignId('product_id');
+            $table->id('orderline_ref_no')->nullable(false)->autoincrement();
+            #$table->increments('orderline_ref_no');
+            #$table->integer('order_ref_no');
+            #$table->integer('product_id');
+            $table->foreignId('order_ref_no')->references('order_ref_no')->on('order')->onupdate('cascade')->ondelete('cascade');
+            $table->foreignId('product_id')->references('product_id')->on('products')->onupdate('cascade')->ondelete('cascade');
             $table->dateTime('order_date');
-            $table->integer('quantity', 100);
+            #$table->integer('quantity', 100);
             $table->float('price');
             $table->float('total_product_price');
             $table->boolean('is_in_basket');
+            $table->engine="InnoDB";
         });
     }
 
