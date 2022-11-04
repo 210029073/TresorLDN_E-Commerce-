@@ -12,6 +12,10 @@
                         <p>{{$single->product_type}}</p>
                         <p>{{$single->product_description}}</p>
                         <p>Price: £{{$single->product_price}}</p>
+
+                        <form action="baskets.addToBasket">
+                            <button type="submit" class="btn-primary btn-sm">Add in Basket</button>
+                        </form>
                     </div>
                 </div>
                 <br/>
