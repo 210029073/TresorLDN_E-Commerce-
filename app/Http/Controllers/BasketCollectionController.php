@@ -21,16 +21,11 @@ class BasketCollectionController extends Controller
         return view('baskets');
     }
 
-    public function addItem(Request $request) {
-        $result = $request->input('product_id');
+    public function showAll() {
 
-        BasketCollection::create(
-            [
-                'product_id' => $result
-            ]
-        );
+        $basket_collections = BasketCollection::all();
 
-        $this->index();
+        return view('baskets', ['basket_collections' => $basket_collections]);
 
     }
 

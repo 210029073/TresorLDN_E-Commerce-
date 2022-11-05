@@ -46,9 +46,7 @@ Route::get('home', function () {
 Route::get('/product/{id}', '\App\Http\Controllers\ProductsController@showId');
 
 
-Route::get('basket', function() {
-    return view('baskets');
-});
+Route::get('/basket', [\App\Http\Controllers\BasketCollectionController::class, 'showAll']);
 
 Route::get('/products', [\App\Http\Controllers\ProductsController::class, 'index'])->name('products');
 Route::post('/addItem', [\App\Http\Controllers\ProductsController::class, 'addItem']);

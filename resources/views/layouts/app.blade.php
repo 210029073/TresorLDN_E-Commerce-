@@ -66,6 +66,12 @@
                                         @csrf
                                     </form>
                                 </div>
+
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{'basket'}}">
+                                    My Basket
+                                </a>
                             </li>
                         @endguest
                     </ul>
