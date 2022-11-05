@@ -34,6 +34,11 @@ If you wish to make changes to the code, I would suggest **cloning**, or **pulli
 - For Project Group 23, we will be using the develop branch, not main branch.
 - The skeleton branch should be avoided.
 - Tested Branch will be created soon.
+- Please make sure that you run the command `git pull` whenever you make changes to the code, as there will daily commits being made.
+
+## Getting Started
+Please follow the guide that Ibrahim Ahmad (210029073) has provided. The link below provides the instructions to setup the laravel project:
+https://github.com/210029073/TresorLDN_E-Commerce-/issues/11
 
 ## Contributing
 
