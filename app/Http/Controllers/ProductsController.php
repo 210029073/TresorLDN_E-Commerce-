@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Products;
-use App\Http\Controllers\Controller;
+use App\Models\BasketCollection;
 use App\Http\Requests\StoreProductsRequest;
 use App\Http\Requests\UpdateProductsRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ProductsController extends Controller
@@ -18,6 +20,9 @@ class ProductsController extends Controller
     public function index()
     {
         //
+        $products = Products::all();
+        #dd($products);
+        return view('products.index', ['products'=>$products]);
     }
 
     /**
@@ -28,6 +33,7 @@ class ProductsController extends Controller
     public function create()
     {
         //
+        return view('products.create');
     }
 
     /**
@@ -39,6 +45,7 @@ class ProductsController extends Controller
     public function store(StoreProductsRequest $request)
     {
         //
+
     }
 
     /**
@@ -52,18 +59,49 @@ class ProductsController extends Controller
         //
     }
 
-    private Products $product;
+    protected $Products;
 
     public function showAllProducts(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $all = DB::table('products')
             ->select('*')
             ->simplePaginate(4);
-        return view('products', compact('all'));
+        return view('/products', compact('all'));
     }
 
     public function showAll() {
-        return view('products', array('products'=>Products::all()));
+//        $products = Products::where('product_type', '=', 'Table')
+//        ->get();
+        $products = Products::all();
+        #dd($products);
+        return view('/products', ['products'=>$products]);
+    }
+
+    public function addItem(Request $request) {
+        $id = $request->product_id;
+        $name = $request->product_name;
+        $type = $request->product_type;
+        $desc = $request->product_description;
+        $price=(double) $request->product_price;
+        $deductions=(double) $request->price_deduction;
+        $user = (int) Auth::id();
+        $data = array(
+            'id' => $id,
+            'user_id' => $user,
+            'product_name' => $name,
+            'product_type' => $type,
+            'product_description' => $desc,
+            'product_price' => $price,
+            'price_deduction' => $deductions
+        );
+        DB::table('basket_collections')->insert($data);
+//        dd(intval($request->product_price));
+        return redirect()->route('products');
+    }
+
+    public function showId($id) {
+        $products = Products::find($id);
+        return view('/product', array('products' => $products));
     }
 
     /**

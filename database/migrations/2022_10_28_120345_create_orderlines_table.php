@@ -20,7 +20,7 @@ return new class extends Migration
             #$table->integer('order_ref_no');
             #$table->integer('product_id');
             $table->foreignId('order_ref_no')->references('order_ref_no')->on('order')->onupdate('cascade')->ondelete('cascade');
-            $table->foreignId('product_id')->references('product_id')->on('products')->onupdate('cascade')->ondelete('cascade');
+            $table->foreignId('id')->references('id')->on('products')->onupdate('cascade')->ondelete('cascade');
             $table->dateTime('order_date');
             #$table->integer('quantity', 100);
             $table->float('price');

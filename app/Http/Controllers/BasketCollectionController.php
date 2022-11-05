@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\BasketCollection;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBasketCollectionRequest;
 use App\Http\Requests\UpdateBasketCollectionRequest;
+use App\Models\Products;
+use \Illuminate\Http\Request;
 
 class BasketCollectionController extends Controller
 {
@@ -17,6 +18,20 @@ class BasketCollectionController extends Controller
     public function index()
     {
         //
+        return view('baskets');
+    }
+
+    public function addItem(Request $request) {
+        $result = $request->input('product_id');
+
+        BasketCollection::create(
+            [
+                'product_id' => $result
+            ]
+        );
+
+        $this->index();
+
     }
 
     /**
@@ -27,6 +42,7 @@ class BasketCollectionController extends Controller
     public function create()
     {
         //
+        return view('products');
     }
 
     /**

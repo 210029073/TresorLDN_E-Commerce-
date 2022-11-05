@@ -15,9 +15,14 @@ return new class extends Migration
     {
         Schema::create('basket_collections', function (Blueprint $table) {
             $table->id('basket_collection_id')->nullable(false)->autoincrement();
-            $table->foreignId('basket_id')->references('basket_id')->on('baskets')->onupdate('cascade')->ondelete('cascade');
-            $table->foreignId('product_id')->references('product_id')->on('products')->onupdate('cascade')->ondelete('cascade');
-            $table->foreignId('orderline_ref_no')->references('orderline_ref_no')->on('orderline')->onupdate('cascade')->ondelete('cascade');
+            $table->integer('user_id');
+            $table->integer('id');
+            $table->string('product_name');
+            $table->string('product_type');
+            $table->float('product_price');
+            $table->boolean('is_discount_applied')->default(true);
+            $table->float('price_deduction')->default(0);
+            $table->string('product_description')->nullable(true);
             $table->timestamps();
         });
     }

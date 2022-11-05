@@ -43,16 +43,15 @@ Route::get('home', function () {
 });
 
 
-Route::get('product', function () {
-    return view('product');
-});
+Route::get('/product/{id}', '\App\Http\Controllers\ProductsController@showId');
 
 
 Route::get('basket', function() {
     return view('baskets');
 });
 
-Route::get('products', 'App\Http\Controllers\ProductsController@showAll')->name('products');
+Route::get('/products', [\App\Http\Controllers\ProductsController::class, 'index'])->name('products');
+Route::post('/addItem', [\App\Http\Controllers\ProductsController::class, 'addItem']);
 
 Auth::routes();
 

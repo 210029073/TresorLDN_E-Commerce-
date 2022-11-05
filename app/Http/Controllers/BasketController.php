@@ -6,6 +6,11 @@ use App\Models\Basket;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBasketRequest;
 use App\Http\Requests\UpdateBasketRequest;
+use App\Models\BasketCollection;
+use App\Models\Products;
+use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\DB;
+use function Sodium\increment;
 
 class BasketController extends Controller
 {
@@ -17,6 +22,7 @@ class BasketController extends Controller
     public function index()
     {
         //
+        return view('baskets');
     }
 
     /**
@@ -38,7 +44,19 @@ class BasketController extends Controller
     public function store(StoreBasketRequest $request)
     {
         //
+        $basket = BasketCollection::create(
+            [
+                'product_id' => $request->input('product_id')
+            ]
+        );
     }
+
+    /**
+     *
+     * This will store products into basket for the appropriate user
+     * @author Ibrahim Ahmad <210029073@aston.ac.uk>
+    */
+
 
     /**
      * Display the specified resource.
