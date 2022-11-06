@@ -34,23 +34,47 @@
 
             <div class="card">
                 <div class="card-body">
-
+                    <?php $total = 0 ?>
                     @foreach($basket_collections as $single)
 
                         @if($single->user_id == \Illuminate\Support\Facades\Auth::id())
                             <ul class="list-group">
-                                <li class="list-group-item">
-                                    <div class="grid">
+                                <li class="list-group-item m-0">
+                                    <div class="grid flex-row flex-wrap m-0">
                                         {{$single->product_name}}
 
-                                        {{$single->product_price}}
+                                        £{{$single->product_price}}
 
-                                        {{$single->price_deduction}}
+                                        £{{$single->price_deduction}}
+                                        <?php $total = $total + ($single->product_price - $single->price_deduction) ?>
+                                        <form action="/removeItem" method="GET">
+                                            @csrf
+                                            <input type="hidden" name="basket_collection_id" value="{{$single->basket_collection_id}}"/>
+                                            <input type="hidden" name="product_id" value="{{$single->id}}"/>
+                                            <input type="hidden" name="product_name" value="{{$single->product_name}}"/>
+                                            <input type="hidden" name="product_type" value="{{$single->product_type}}"/>
+                                            <input type="hidden" name="product_price" value="{{$single->product_price}}"/>
+                                            <input type="hidden" name="product_description" value="{{$single->product_description}}"/>
+                                            <input type="hidden" name="price_deduction" value="{{$single->price_deduction}}"/>
+                                            <button type="submit">Remove</button>
+                                        </form>
                                     </div>
                                 </li>
                             </ul>
                         @endif
                     @endforeach
+                        Overall Total: £{{$total}}
+                        <form action="" method="post">
+                            @csrf
+                            <input type="hidden" name="basket_collection_id" value="{{$single->basket_collection_id}}"/>
+                            <input type="hidden" name="product_id" value="{{$single->id}}"/>
+                            <input type="hidden" name="product_name" value="{{$single->product_name}}"/>
+                            <input type="hidden" name="product_type" value="{{$single->product_type}}"/>
+                            <input type="hidden" name="product_price" value="{{$single->product_price}}"/>
+                            <input type="hidden" name="product_description" value="{{$single->product_description}}"/>
+                            <input type="hidden" name="price_deduction" value="{{$single->price_deduction}}"/>
+                            <button type="submit">Checkout</button>
+                        </form>
                 </div>
             </div>
         </div>

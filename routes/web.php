@@ -46,10 +46,11 @@ Route::get('home', function () {
 Route::get('/product/{id}', '\App\Http\Controllers\ProductsController@showId');
 
 
-Route::get('/basket', [\App\Http\Controllers\BasketCollectionController::class, 'showAll']);
+Route::get('/basket', [\App\Http\Controllers\BasketCollectionController::class, 'showAll'])->name('basket');
 
 Route::get('/products', [\App\Http\Controllers\ProductsController::class, 'index'])->name('products');
 Route::post('/addItem', [\App\Http\Controllers\ProductsController::class, 'addItem']);
+Route::get('/removeItem', [\App\Http\Controllers\BasketCollectionController::class, 'removeItem']);
 
 Auth::routes();
 
