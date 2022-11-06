@@ -52,7 +52,7 @@ class BasketCollectionController extends Controller
             'product_description' => $desc
         ];
 
-        $res = BasketCollection::where('user_id', $user)->where('id', $product_id)->delete();
+        BasketCollection::where('user_id', $user)->where('id', $product_id)->delete();
 
         return redirect()->route('basket');
     }

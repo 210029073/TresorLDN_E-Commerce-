@@ -23,9 +23,13 @@ return new class extends Migration
             $table->foreignId('id')->references('id')->on('products')->onupdate('cascade')->ondelete('cascade');
             $table->dateTime('order_date');
             #$table->integer('quantity', 100);
+            $table->string('product_name');
+            $table->string('product_type');
+            $table->string('product_description')->nullable(true);
+            $table->boolean('is_discount_applied')->default(true);
+            $table->float('price_deduction')->default(0);
             $table->float('price');
             $table->float('total_product_price');
-            $table->boolean('is_in_basket');
             $table->engine="InnoDB";
         });
     }

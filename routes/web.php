@@ -52,6 +52,8 @@ Route::get('/products', [\App\Http\Controllers\ProductsController::class, 'index
 Route::post('/addItem', [\App\Http\Controllers\ProductsController::class, 'addItem']);
 Route::get('/removeItem', [\App\Http\Controllers\BasketCollectionController::class, 'removeItem']);
 
+Route::post('/basket/createOrder', [\App\Http\Controllers\OrderlineController::class, 'createOrder']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

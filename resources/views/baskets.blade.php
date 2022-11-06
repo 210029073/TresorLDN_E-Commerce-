@@ -46,7 +46,8 @@
                                         £{{$single->product_price}}
 
                                         £{{$single->price_deduction}}
-                                        <?php $total = $total + ($single->product_price - $single->price_deduction) ?>
+
+                                        {{$total = $total + $single->product_price - $single->price_deduction}}
                                         <form action="/removeItem" method="GET">
                                             @csrf
                                             <input type="hidden" name="basket_collection_id" value="{{$single->basket_collection_id}}"/>
@@ -64,15 +65,8 @@
                         @endif
                     @endforeach
                         Overall Total: £{{$total}}
-                        <form action="" method="post">
+                        <form action="basket/createOrder" method="POST">
                             @csrf
-                            <input type="hidden" name="basket_collection_id" value="{{$single->basket_collection_id}}"/>
-                            <input type="hidden" name="product_id" value="{{$single->id}}"/>
-                            <input type="hidden" name="product_name" value="{{$single->product_name}}"/>
-                            <input type="hidden" name="product_type" value="{{$single->product_type}}"/>
-                            <input type="hidden" name="product_price" value="{{$single->product_price}}"/>
-                            <input type="hidden" name="product_description" value="{{$single->product_description}}"/>
-                            <input type="hidden" name="price_deduction" value="{{$single->price_deduction}}"/>
                             <button type="submit">Checkout</button>
                         </form>
                 </div>
