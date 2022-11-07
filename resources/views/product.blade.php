@@ -11,7 +11,7 @@
                             <p>{{$products->product_description}}</p>
                             <p>£{{$products->product_price}}</p>
 
-                            <form action="/addItem" method="POST">
+                            <form action="../addItem" method="POST">
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{$products->id}}">
                                 <input type="hidden" name="product_name" value="{{$products->product_name}}">

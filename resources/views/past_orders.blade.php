@@ -17,7 +17,7 @@
                         @if($size == 0)
                             <h2><strong>There is currently no past order.</strong></h2>
                         @else
-                        <h2><strong>{{\Illuminate\Support\Facades\Auth::user()->user_first_name}}, this is your orders</strong></h2>
+                        <h2><strong>{{\Illuminate\Support\Facades\Auth::user()->user_first_name}}, this is your past orders</strong></h2>
                             @foreach($prevOrders as $order)
                                 <div class="order_table">
                                     <div id="order-header">

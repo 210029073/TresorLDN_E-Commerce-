@@ -65,7 +65,7 @@
                         @endif
                     @endforeach
                         Overall Total: £{{$total}}
-                        <form action="basket/createOrder" method="POST">
+                        <form action="../basket/createOrder" method="POST">
                             @csrf
                             <button type="submit">Checkout</button>
                         </form>
