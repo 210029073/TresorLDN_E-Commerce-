@@ -1,10 +1,37 @@
-#past-order-rows {
-    padding: 10%;
+* {
+    font-family: Arial;
 }
 
-#past-order-h {
-    padding: 10%;
+.order_table {
+    justify-content: space-evenly;
+    border: 1px solid #a0aec0;
+    width: 100%;
+    border-radius: 1%;
 }
 
-#past-order-h tr:nth-child(even){background-color: #f2f2f2;}
+
+.order_table #customer-orders {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#order-header {
+    width: 100%;
+    background-color: #e9ecef;
+    border-radius: 2.5%;
+}
+
+#order-header span {
+    padding: 3% 2.5%;
+}
+
+#customer-orders p {
+    padding: 0% 2.5%;
+}
+
+
+
+/*#customer-orders:nth-child(even){background-color: #f2f2f2;}*/
 
