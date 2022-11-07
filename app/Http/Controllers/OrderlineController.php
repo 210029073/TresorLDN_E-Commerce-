@@ -91,6 +91,20 @@ class OrderlineController extends Controller
         return redirect()->route('basket');
     }
 
+    public function viewPastOrders() {
+        $result = [];
+        //one loop for iterating over orders from orderline and store into result
+        //we get the list of orders
+        $user_order = DB::table('order')->where('id', Auth::id())->get();
+        $size = count($user_order);
+        for($i = 0; $i <= $size; $i++) {
+            $past_orders = DB::table('orderlines')->where('order_ref_no', $user_order[0]->order_ref_no)->get();
+            $result[$i] = $past_orders[$i];
+        }
+//        dd($result);
+        return view('past_orders', ['prevOrders'=>$result]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

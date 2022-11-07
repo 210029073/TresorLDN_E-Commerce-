@@ -1,0 +1,10 @@
+#past-order-rows {
+    padding: 10%;
+}
+
+#past-order-h {
+    padding: 10%;
+}
+
+#past-order-h tr:nth-child(even){background-color: #f2f2f2;}
+

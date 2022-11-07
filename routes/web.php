@@ -54,6 +54,8 @@ Route::get('/removeItem', [\App\Http\Controllers\BasketCollectionController::cla
 
 Route::post('/basket/createOrder', [\App\Http\Controllers\OrderlineController::class, 'createOrder']);
 
+Route::get('/pastOrders', [\App\Http\Controllers\OrderlineController::class, 'viewPastOrders']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

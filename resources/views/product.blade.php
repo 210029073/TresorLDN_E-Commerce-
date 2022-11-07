@@ -5,7 +5,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
-                            <img src="/jpg/{{$products->image}}" width="800" height="520"/>
+                            <img src="../jpg/{{$products->image}}" width="800" height="520"/>
                             <p><strong>{{$products->product_name}}</strong></p>
                             <p>{{$products->product_type}}</p>
                             <p>{{$products->product_description}}</p>

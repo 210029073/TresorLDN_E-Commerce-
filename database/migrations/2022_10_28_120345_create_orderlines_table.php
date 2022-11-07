@@ -14,18 +14,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orderline', function (Blueprint $table) {
+        Schema::create('orderlines', function (Blueprint $table) {
             $table->id('orderline_ref_no')->nullable(false)->autoincrement();
             #$table->increments('orderline_ref_no');
             #$table->integer('order_ref_no');
             #$table->integer('product_id');
             $table->foreignId('order_ref_no')->references('order_ref_no')->on('order')->onupdate('cascade')->ondelete('cascade');
             $table->foreignId('id')->references('id')->on('products')->onupdate('cascade')->ondelete('cascade');
-            $table->dateTime('order_date');
+            $table->dateTime('order_date')->default(date("YYYY:MM:DD HH:MM:SS"));
             #$table->integer('quantity', 100);
             $table->string('product_name');
             $table->string('product_type');
-            $table->string('product_description')->nullable(true);
+            $table->string('product_description')->nullable();
             $table->boolean('is_discount_applied')->default(true);
             $table->float('price_deduction')->default(0);
             $table->float('price');
