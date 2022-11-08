@@ -78,24 +78,28 @@ class ProductsController extends Controller
     }
 
     public function addItem(Request $request) {
-        $id = $request->product_id;
-        $name = $request->product_name;
-        $type = $request->product_type;
-        $desc = $request->product_description;
-        $price=(double) $request->product_price;
-        $deductions=(double) $request->price_deduction;
-        $user = (int) Auth::id();
-        $data = array(
-            'id' => $id,
-            'user_id' => $user,
-            'product_name' => $name,
-            'product_type' => $type,
-            'product_description' => $desc,
-            'product_price' => $price,
-            'price_deduction' => $deductions
-        );
-        DB::table('basket_collections')->insert($data);
+        if(Auth::check() && !Auth::guest()) {
+            $id = $request->product_id;
+            $name = $request->product_name;
+            $type = $request->product_type;
+            $desc = $request->product_description;
+            $price = (double)$request->product_price;
+            $deductions = (double)$request->price_deduction;
+            $user = (int)Auth::id();
+            $data = array(
+                'id' => $id,
+                'user_id' => $user,
+                'product_name' => $name,
+                'product_type' => $type,
+                'product_description' => $desc,
+                'product_price' => $price,
+                'price_deduction' => $deductions
+            );
+            DB::table('basket_collections')->insert($data);
 //        dd(intval($request->product_price));
+            return redirect()->route('products');
+        }
+
         return redirect()->route('products');
     }
 

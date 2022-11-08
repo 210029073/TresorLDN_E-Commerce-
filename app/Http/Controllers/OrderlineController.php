@@ -42,36 +42,38 @@ class OrderlineController extends Controller
 //        $price=(double) $request->product_price;
 //        $deductions=(double) $request->price_deduction;
 //        $total=(double) $request->total;
-        $user = (int) Auth::id();
+        if(Auth::check() && !Auth::guest()) {
+            $user = (int)Auth::id();
 
-        //dd($data[$size]->order_ref_no);
+            //dd($data[$size]->order_ref_no);
 
-        $pa = DB::table('basket_collections')->where('user_id', $user)->get();
-        $quantity = count($pa) - 1;
-        $total = 0;
-        for($i = 0; $i <= $quantity; $i++) {
-            $total += $pa[$i]->product_price;
-        }
-        DB::table('order')->insert(['id' => $user, 'total' => $total]);
-        $data = DB::table('order')->where('id', $user)->get();
-        $size = count($data) - 1;
+            $pa = DB::table('basket_collections')->where('user_id', $user)->get();
+            $quantity = count($pa) - 1;
+            $total = 0;
+            for ($i = 0; $i <= $quantity; $i++) {
+                $total += $pa[$i]->product_price;
+                $total -= $pa[$i]->price_deduction;
+            }
+            DB::table('order')->insert(['id' => $user, 'total' => $total]);
+            $data = DB::table('order')->where('id', $user)->get();
+            $size = count($data) - 1;
 //        dd($pa[0]);
-        for($i = 0; $i <= $quantity; $i++) {
-            $parsedData = [
-                'order_ref_no' => $data[$size]->order_ref_no,
-                'id' => $pa[$i]->id,
-                'product_name' => $pa[$i]->product_name,
-                'product_type' => $pa[$i]->product_type,
-                'price' => $pa[$i]->product_price,
-                'price_deduction' => $pa[$i]->price_deduction,
-                'total_product_price' => $total,
-                'product_description' => $pa[$i]->product_description
-            ];
+            for ($i = 0; $i <= $quantity; $i++) {
+                $parsedData = [
+                    'order_ref_no' => $data[$size]->order_ref_no,
+                    'id' => $pa[$i]->id,
+                    'product_name' => $pa[$i]->product_name,
+                    'product_type' => $pa[$i]->product_type,
+                    'price' => $pa[$i]->product_price,
+                    'price_deduction' => $pa[$i]->price_deduction,
+                    'total_product_price' => $total,
+                    'product_description' => $pa[$i]->product_description
+                ];
 
 //        Orderline::create($parsedData);
 
-            DB::table('orderlines')->insert($parsedData);
-        }
+                DB::table('orderlines')->insert($parsedData);
+            }
 
 //        $parsedData = [
 //            'order_ref_no' => $data[$size]->order_ref_no,
@@ -87,24 +89,25 @@ class OrderlineController extends Controller
 ////        Orderline::create($parsedData);
 //
 //        DB::table('orderlines')->insert($parsedData);
-        echo('alert(Successfully performed ordered request.)');
-        //return redirect()->route('basket');
+        }
+        return redirect()->route('home');
     }
 
     public function viewPastOrders() {
-        $result = array();
-        $final = [];
-        //one loop for iterating over orders from orderline and store into result
-        //we get the list of orders
-        $user_order = DB::table('order')->where('id', Auth::id())->get();
-        $size = count($user_order);
+        if(Auth::check()) {
+            $result = array();
+            $final = [];
+            //one loop for iterating over orders from orderline and store into result
+            //we get the list of orders
+            $user_order = DB::table('order')->where('id', Auth::id())->get();
+            $size = count($user_order);
 
-        #get the number of items in basket
+            #get the number of items in basket
 
-        for ($i = $size - 1; $i >= 0; $i--) {
-            $result[$i] = DB::table('orderlines')->where('order_ref_no', $user_order[$i]->order_ref_no)->get();
+            for ($i = $size - 1; $i >= 0; $i--) {
+                $result[$i] = DB::table('orderlines')->where('order_ref_no', $user_order[$i]->order_ref_no)->get();
 //            $i++;
-        }
+            }
 
 //        dd($result);
 
@@ -120,7 +123,10 @@ class OrderlineController extends Controller
 
 
 //        dd($result);
-        return view('past_orders', ['prevOrders'=>$result]);
+            return view('past_orders', ['prevOrders' => $result]);
+        }
+
+        return redirect()->route('home');
     }
 
     /**

@@ -20,41 +20,53 @@ class BasketCollectionController extends Controller
     public function index()
     {
         //
-        return view('baskets');
+        if(Auth::check() && !Auth::guest()) {
+            return view('baskets');
+        }
+
+        return redirect()->route('home');
     }
 
     public function showAll() {
 
-        $basket_collections = BasketCollection::all();
+        if(Auth::check() && !Auth::guest()) {
+            $basket_collections = BasketCollection::all();
 
-        return view('baskets', ['basket_collections' => $basket_collections]);
+            return view('baskets', ['basket_collections' => $basket_collections]);
+        }
+
+        return redirect()->route('home');
 
     }
 
     public function removeItem(Request $request) {
-        $id = (int) $request->basket_collection_id;
-        $product_id = (int) $request->product_id;
-        $name = $request->product_name;
-        $type = $request->product_type;
-        $desc = $request->product_description;
-        $price=(double) $request->product_price;
-        $deductions=(double) $request->price_deduction;
-        $user = (int) Auth::id();
+        if(Auth::check()) {
+            $id = (int)$request->basket_collection_id;
+            $product_id = (int)$request->product_id;
+            $name = $request->product_name;
+            $type = $request->product_type;
+            $desc = $request->product_description;
+            $price = (double)$request->product_price;
+            $deductions = (double)$request->price_deduction;
+            $user = (int)Auth::id();
 
-        $parsedData = [
-            'basket_collection_id' => $id,
-            'user_id' => $user,
-            'id' => $product_id,
-            'product_name' => $name,
-            'product_type' => $type,
-            'product_price' => $price,
-            'price_deduction' => $deductions,
-            'product_description' => $desc
-        ];
+            $parsedData = [
+                'basket_collection_id' => $id,
+                'user_id' => $user,
+                'id' => $product_id,
+                'product_name' => $name,
+                'product_type' => $type,
+                'product_price' => $price,
+                'price_deduction' => $deductions,
+                'product_description' => $desc
+            ];
 
-        BasketCollection::where('user_id', $user)->where('id', $product_id)->delete();
+            BasketCollection::where('user_id', $user)->where('id', $product_id)->delete();
 
-        return redirect()->route('basket');
+            return redirect()->route('basket');
+        }
+
+        return redirect()->route('home');
     }
 
     /**

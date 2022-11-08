@@ -6,7 +6,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="col-md-6">
-                                <img src="../jpg/{{$products->image}}" width="800" height="520"/>
+                                <img src="{{asset("/jpg/$products->image")}}" width="800" height="520"/>
                             </div>
                             <p><strong>{{$products->product_name}}</strong></p>
                             <p>{{$products->product_type}}</p>
