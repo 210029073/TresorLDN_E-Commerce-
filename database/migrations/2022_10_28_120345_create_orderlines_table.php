@@ -21,7 +21,7 @@ return new class extends Migration
             #$table->integer('product_id');
             $table->foreignId('order_ref_no')->references('order_ref_no')->on('order')->onupdate('cascade')->ondelete('cascade');
             $table->foreignId('id')->references('id')->on('products')->onupdate('cascade')->ondelete('cascade');
-            $table->dateTime('order_date')->default(date("YYYY:MM:DD HH:MM:SS"));
+            $table->dateTime('order_date')->useCurrent();
             #$table->integer('quantity', 100);
             $table->string('product_name');
             $table->string('product_type');

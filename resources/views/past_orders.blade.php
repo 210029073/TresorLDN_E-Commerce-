@@ -6,7 +6,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-13">
                 <div class="card">
                     <div class="card-body">
                         <h1><strong>Viewing Past Orders</strong></h1>
@@ -18,7 +18,8 @@
                             <h2><strong>There is currently no past order.</strong></h2>
                         @else
                         <h2><strong>{{\Illuminate\Support\Facades\Auth::user()->user_first_name}}, this is your past orders</strong></h2>
-                            @foreach($prevOrders as $order)
+                            @foreach($prevOrders as $orders)
+                                @foreach($orders as $order)
                                 <div class="order_table">
                                     <div id="order-header">
                                         <span>
@@ -41,6 +42,7 @@
                                     </div>
                                 </div>
                                 <br/>
+                                @endforeach
                             @endforeach
                         @endif
                     </div>

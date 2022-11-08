@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('order', function (Blueprint $table) {
             $table->id('order_ref_no');
             $table->foreignId('id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->dateTime('order_date')->default(date("YYYY:MM:DD HH:MM:SS"));;
+            $table->dateTime('order_date')->useCurrent();
             $table->float('total');
         });
     }

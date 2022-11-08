@@ -87,20 +87,38 @@ class OrderlineController extends Controller
 ////        Orderline::create($parsedData);
 //
 //        DB::table('orderlines')->insert($parsedData);
-
-        return redirect()->route('basket');
+        echo('alert(Successfully performed ordered request.)');
+        //return redirect()->route('basket');
     }
 
     public function viewPastOrders() {
-        $result = [];
+        $result = array();
+        $final = [];
         //one loop for iterating over orders from orderline and store into result
         //we get the list of orders
         $user_order = DB::table('order')->where('id', Auth::id())->get();
         $size = count($user_order);
-        for($i = 0; $i <= $size; $i++) {
-            $past_orders = DB::table('orderlines')->where('order_ref_no', $user_order[0]->order_ref_no)->get();
-            $result[$i] = $past_orders[$i];
+
+        #get the number of items in basket
+
+        for ($i = $size - 1; $i >= 0; $i--) {
+            $result[$i] = DB::table('orderlines')->where('order_ref_no', $user_order[$i]->order_ref_no)->get();
+//            $i++;
         }
+
+//        dd($result);
+
+//        $size = count($result);
+//
+//        for($i = 0; $i <= $size; $i++) {
+//            $final[$i] = $result[$i];
+//            dd($final[$i]);
+//        }
+
+//        $past_orders = DB::table('orderlines')->where('order_ref_no', $user_order[$size]->order_ref_no)->get();
+//        $result = $past_orders;
+
+
 //        dd($result);
         return view('past_orders', ['prevOrders'=>$result]);
     }

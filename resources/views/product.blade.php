@@ -2,10 +2,12 @@
 @section('content')
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-13">
                     <div class="card">
                         <div class="card-body">
-                            <img src="../jpg/{{$products->image}}" width="800" height="520"/>
+                            <div class="col-md-6">
+                                <img src="../jpg/{{$products->image}}" width="800" height="520"/>
+                            </div>
                             <p><strong>{{$products->product_name}}</strong></p>
                             <p>{{$products->product_type}}</p>
                             <p>{{$products->product_description}}</p>
