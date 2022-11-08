@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('basket_collections', function (Blueprint $table) {
             $table->id('basket_collection_id')->nullable(false)->autoincrement();
-            $table->integer('user_id');
-            $table->integer('id');
+            $table->foreignId('user_id')->references('id')->on('users')->onupdate('cascade')->ondelete('cascade');
+            $table->foreignId('id')->references('id')->on('products')->onupdate('cascade')->ondelete('cascade');
             $table->string('product_name');
             $table->string('product_type');
             $table->float('product_price');

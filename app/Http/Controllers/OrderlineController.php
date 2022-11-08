@@ -90,7 +90,7 @@ class OrderlineController extends Controller
 //
 //        DB::table('orderlines')->insert($parsedData);
         }
-        return redirect()->route('home');
+        return redirect()->route('products');
     }
 
     public function viewPastOrders() {
