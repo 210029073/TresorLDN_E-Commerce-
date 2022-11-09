@@ -89,5 +89,9 @@
             @yield('content')
         </main>
     </div>
+
+    <footer class="footer">
+        <span>@Copyright 2022 TresorLDN Limited Company</span>
+    </footer>
 </body>
 </html>
