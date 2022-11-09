@@ -1,3 +1,22 @@
 * {
     font-family: Arial, sans;
 }
+
+.banner {
+    height: auto;
+    width: auto;
+}
+
+.products {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.product {
+    width: 40%;
+}
+
+.product .product-body {
+    width: 50%;
+}

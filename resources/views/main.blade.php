@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
+<head>
+    <link rel="stylesheet" href="{{asset("css/main.css")}}"/>
+</head>
+
 @section('content')
+    <div class="banner">
+        <div class="row-cols-md-1 justify-content-center">
+            <img src="{{asset("gif/advert.gif")}}"/>
+        </div>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">

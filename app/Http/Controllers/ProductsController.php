@@ -77,6 +77,37 @@ class ProductsController extends Controller
         return view('/products', ['products'=>$products]);
     }
 
+    public function showTables() {
+//        $products = Products::where('product_type', '=', 'Table')
+//        ->get();
+        $products = Products::all();
+        #dd($products);
+        return view('/products/tables', ['products'=>$products]);
+    }
+
+    public function showBeds() {
+//        $products = Products::where('product_type', '=', 'Table')
+//        ->get();
+        $products = Products::all();
+        #dd($products);
+        return view('/products/beds', ['products'=>$products]);
+    }
+
+    public function showSofas() {
+//        $products = Products::where('product_type', '=', 'Table')
+//        ->get();
+        $products = Products::all();
+        #dd($products);
+        return view('/products/sofas', ['products'=>$products]);
+    }
+
+    public function showChairs() {
+//        $products = Products::where('product_type', '=', 'Table')
+//        ->get();
+        $products = Products::all();
+        #dd($products);
+        return view('/products/chairs', ['products'=>$products]);
+    }
     public function addItem(Request $request) {
         if(Auth::check() && !Auth::guest()) {
             $id = $request->product_id;

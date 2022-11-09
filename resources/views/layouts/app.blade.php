@@ -13,7 +13,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{asset('css/main.css')}}">
+    <link rel="stylesheet" href="{{asset("css/main.css")}}">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -70,12 +70,12 @@
 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{'basket'}}">
+                                <a class="nav-link" href="{{route('basket')}}">
                                     My Basket
                                 </a>
                             </li>
                             <li>
-                                <a class="nav-link" href="{{'pastOrders'}}">
+                                <a class="nav-link" href="{{route('pastOrders')}}">
                                     View Past Orders
                                 </a>
                             </li>

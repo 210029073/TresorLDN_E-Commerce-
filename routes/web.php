@@ -49,12 +49,16 @@ Route::get('/product/{id}', '\App\Http\Controllers\ProductsController@showId');
 Route::get('/basket', [\App\Http\Controllers\BasketCollectionController::class, 'showAll'])->name('basket');
 
 Route::get('/products', [\App\Http\Controllers\ProductsController::class, 'index'])->name('products');
+Route::get('/products/tables', [\App\Http\Controllers\ProductsController::class, 'showTables'])->name('tables');
+Route::get('/products/sofas', [\App\Http\Controllers\ProductsController::class, 'showSofas'])->name('sofas');
+Route::get('/products/chairs', [\App\Http\Controllers\ProductsController::class, 'showChairs'])->name('chairs');
+Route::get('/products/beds', [\App\Http\Controllers\ProductsController::class, 'showBeds'])->name('beds');
 Route::post('/addItem', [\App\Http\Controllers\ProductsController::class, 'addItem']);
 Route::get('/removeItem', [\App\Http\Controllers\BasketCollectionController::class, 'removeItem']);
 
 Route::post('/basket/createOrder', [\App\Http\Controllers\OrderlineController::class, 'createOrder']);
 
-Route::get('/pastOrders', [\App\Http\Controllers\OrderlineController::class, 'viewPastOrders']);
+Route::get('/pastOrders', [\App\Http\Controllers\OrderlineController::class, 'viewPastOrders'])->name('pastOrders');
 
 Auth::routes();
 
