@@ -74,5 +74,32 @@ class ProductsSeeder extends Seeder
             'price_deduction' => 38.49,
             'image' => 'Single Sized Reversible Bed.jpg'
         ]);
+
+        Products::create([
+            'product_name' => 'Office Desk',
+            'product_type' => 'Table',
+            'product_description' => 'An Office Desk with draws in order to organise your daily office workflows',
+            'product_price' => 100,
+            'price_deduction' => 15.80,
+            'image' => 'office desk.jpg'
+        ]);
+
+        Products::create([
+            'product_name' => 'Dining Table with Four Chairs (Black)',
+            'product_type' => 'Table',
+            'product_description' => 'Explore the modernised dining table, a dining table with four chairs, perfect for the family.',
+            'product_price' => 269,
+            'price_deduction' => 25,
+            'image' => 'dining table four chairs black.jpg'
+        ]);
+
+        Products::create([
+            'product_name' => 'Plastic Chair',
+            'product_type' => 'Chair',
+            'product_description' => 'A chair that is stackable, and can be stored away easily and be re-used according to your needs',
+            'product_price' => 12,
+            'price_deduction' => 0,
+            'image' => 'plastic chair.jpg'
+        ]);
     }
 }
