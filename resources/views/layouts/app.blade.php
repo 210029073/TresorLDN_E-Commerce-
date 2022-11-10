@@ -12,25 +12,24 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
+    
     <link rel="stylesheet" href="{{asset("css/main.css")}}">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
 </head>
+
 <body>
 <?php
-//session_start();
-if(Auth::check()) {
-    setcookie('id',(int)(\Illuminate\Support\Facades\Auth::user()->id));
-    DB::table('users')->where('id', $_COOKIE['id'])->update(['user_status' => 'online']);
-}
-
-else {
-    DB::table('users')->where('id', $_COOKIE['id'])->update(['user_status' => 'offline']);
-    setcookie('id', time() - 3600);
-}
-//dd($_COOKIE)
-?>
+    //session_start();
+    header("url=route('home')");
+    use App\Http\Controllers\HomeController;
+    
+    HomeController::generateCookie();
+    
+    //dd($_COOKIE)
+    ?>
+    
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">

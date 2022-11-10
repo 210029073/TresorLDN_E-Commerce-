@@ -28,5 +28,28 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    
+    public static function generateCookie() {
+        
+        if(isset($_COOKIE['id'])) {
+
+            if(Auth::check()) {
+                setcookie('id',(int)(\Illuminate\Support\Facades\Auth::user()->id));
+                DB::table('users')->where('id', $_COOKIE['id'])->update(['user_status' => 'online']);
+            }
+            
+            else {
+                DB::table('users')->where('id', $_COOKIE['id'])->update(['user_status' => 'offline']);
+                setcookie('id', time() - 3600);
+            }
+        
+        }
+
+        else {
+            setcookie('id', 0);
+        }
+
+        return redirect()->route('home');
+    }
 
 }
