@@ -63,3 +63,7 @@ Route::get('/pastOrders', [\App\Http\Controllers\OrderlineController::class, 'vi
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/admin', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+Route::get('/admin/customers', [\App\Http\Controllers\AdminController::class, 'showAllCustomers'])->name('admin');
+Route::get('/admin/orders', [\App\Http\Controllers\AdminController::class, 'showAllOrders'])->name('admin');

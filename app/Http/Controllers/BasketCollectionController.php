@@ -24,7 +24,7 @@ class BasketCollectionController extends Controller
             return view('baskets');
         }
 
-        return redirect()->route('home');
+        return redirect()->route('/');
     }
 
     public function showAll() {
@@ -61,7 +61,7 @@ class BasketCollectionController extends Controller
                 'product_description' => $desc
             ];
 
-            BasketCollection::where('user_id', $user)->where('id', $product_id)->delete();
+            BasketCollection::where('user_id', $user)->where('basket_collection_id', $id)->delete();
 
             return redirect()->route('basket');
         }

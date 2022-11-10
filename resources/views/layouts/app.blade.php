@@ -92,6 +92,18 @@ else {
                                     View Past Orders
                                 </a>
                             </li>
+                            @if(\Illuminate\Support\Facades\Auth::user()->isAdmin == 1)
+                                <li>
+                                    <a class="nav-link" href="{{route('admin')}}">
+                                        Admin View
+                                    </a>
+                                </li>
+                            @endif
+                            @if(\Illuminate\Support\Facades\Auth::user()->user_status == 'online')
+                                <li>
+                                    <a class="nav-link">Online</a>
+                                </li>
+                            @endif
                         @endguest
                     </ul>
                 </div>
