@@ -11,8 +11,10 @@
                     <div class="card-body">
                         <h1>Admin Page</h1>
                         <h2>View a List of Customer</h2>
+                        <a href="{{route('adminViewCustomers')}}">View Customers</a>
 
                         <h2>View Orders</h2>
+                        <a href="{{route('adminViewOrders')}}">View Orders</a>
 
                     </div>
                 </div>
