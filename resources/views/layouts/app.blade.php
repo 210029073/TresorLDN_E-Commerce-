@@ -18,6 +18,19 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
+<?php
+//session_start();
+if(Auth::check()) {
+    setcookie('id',(int)(\Illuminate\Support\Facades\Auth::user()->id));
+    DB::table('users')->where('id', $_COOKIE['id'])->update(['user_status' => 'online']);
+}
+
+else {
+    DB::table('users')->where('id', $_COOKIE['id'])->update(['user_status' => 'offline']);
+    setcookie('id', time() - 3600);
+}
+//dd($_COOKIE)
+?>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -84,7 +97,6 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>
