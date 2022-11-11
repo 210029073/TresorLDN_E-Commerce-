@@ -39,6 +39,12 @@ class BasketCollectionController extends Controller
 
     }
 
+    /**
+     * This will remove an item from the basket.
+     *
+     * @param Request $request for accessing the items via the html form
+     * @return Redirects to the basket page.
+     */
     public function removeItem(Request $request) {
         if(Auth::check()) {
             $id = (int)$request->basket_collection_id;

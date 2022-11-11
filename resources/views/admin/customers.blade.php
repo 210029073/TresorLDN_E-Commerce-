@@ -12,7 +12,6 @@
                         <h1>Admin Page</h1>
                         <h2>View a List of Customer</h2>
                         @foreach($customers as $customer)
-                            {{--                            @foreach($orders as $order)--}}
                             <div class="order_table">
                                 <div id="order-header">
                                         <span>
@@ -46,7 +45,6 @@
                                 </div>
                             </div>
                             <br/>
-                            {{--                            @endforeach--}}
                         @endforeach
                     </div>
                 </div>

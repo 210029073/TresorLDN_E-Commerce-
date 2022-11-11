@@ -15,6 +15,10 @@
     align-content: space-around;
 }
 
+.userContainer {
+    width: 25%;
+}
+
 .product-selection {
     display: flex;
     flex-wrap: wrap;
