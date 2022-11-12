@@ -12,7 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="{{asset("css/main.css")}}">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -24,12 +24,12 @@
     //session_start();
     header("url=route('home')");
     use App\Http\Controllers\HomeController;
-    
+
     HomeController::generateCookie();
-    
+
     //dd($_COOKIE)
     ?>
-    
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -44,7 +44,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item">
+                            <form method="POST" action="{{route('search')}}">
+                                @csrf
+                                <input class="searchBar" type="text" placeholder="Enter a search" name="searchTarget"/>
+                                <button type="submit">Search</button>
+                            </form>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
