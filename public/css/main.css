@@ -68,11 +68,33 @@
 }
 
 .searchBarContainer {
+    padding: 0.2% 0;
+    display: block;
+    justify-content: center;
+    align-content: center;
+    margin: 0;
     width: 50%;
+    height: 10%;
 }
 
-.searchBar {
+.searchBarContainer input[type=text] {
+    float: none;
+    text-align: left;
+    width: 70%;
+    padding: 3px 6px;
 
+}
+
+.searchBarContainer button {
+    background-color: burlywood;
+    color: #f0f0f0;
+    padding: 3px 6px;
+    width: 30%;
+    transition: 0.8s;
+}
+
+.searchBarContainer button:hover {
+    background-color: saddlebrown;
 }
 
 .footer {

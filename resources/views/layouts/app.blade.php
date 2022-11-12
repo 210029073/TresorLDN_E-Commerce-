@@ -43,15 +43,15 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
+{{--                    <ul class="navbar-nav me-auto">--}}
+                        <div class="searchBarContainer">
                             <form method="POST" action="{{route('search')}}">
                                 @csrf
-                                <input class="searchBar" type="text" placeholder="Enter a search" name="searchTarget"/>
+                                <input type="text" placeholder="Enter a search" name="searchTarget"/>
                                 <button type="submit">Search</button>
                             </form>
-                        </li>
-                    </ul>
+                        </div>
+{{--                    </ul>--}}
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
