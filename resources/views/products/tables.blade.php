@@ -30,23 +30,44 @@
         </div>
 
         <h1>Showing tables</h1>
-
-        <div class="products">
-            @foreach($products as $single)
-                @if($single->product_type == "Table")
-                    <div class="product">
-                        <div class="product-body">
-                            <img class="col justify-content-center" src="{{asset("jpg/$single->image")}}" width="480" height="240"/>
-                            <p><a href="../product/{{$single->id}}"><strong>{{$single->product_name}}</strong></a></p>
-                            <p>{{$single->product_type}}</p>
-                            <p>{{$single->product_description}}</p>
-                            <p>Price: £{{$single->product_price}}</p>
-                            <p>Discount Price: £{{$single->price_deduction}}</p>
+        <div class="products-container">
+            <div class="filters">
+                <form method="POST" action="{{route('productFilter')}}">
+                    @csrf
+                    <h5>Specify Price</h5>
+                    <label for="price">Specify Price</label>
+                    <input type="range" name="priceInput" placeholder="Between £0 to £1000" min="0" max="1000" oninput="this.form.priceRange.value=this.value"/>
+                    <input type="number" name="priceRange" value="£0" min="0" max="1000" oninput="this.form.priceInput.value=this.value"/>
+                    <br/><br/>
+                    <h5>Specify Furniture</h5>
+                    <input type="radio" id="sofas" name="furniture" value="Sofa"/>
+                    <label for="sofas">Sofa</label><br/>
+                    <input type="radio" id="chairs" name="furniture" value="Chair"/>
+                    <label for="chairs">Chair</label><br/>
+                    <input type="radio" id="beds" name="furniture" value="Bed"/>
+                    <label for="beds">Bed</label><br/>
+                    <input type="radio" id="tables" name="furniture" value="Table"/>
+                    <label for="beds">Table</label><br/>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="products">
+                @foreach($products as $single)
+                    @if($single->product_type == "Table")
+                        <div class="product">
+                            <div class="product-body">
+                                <img class="col justify-content-center" src="{{asset("jpg/$single->image")}}" width="480" height="240"/>
+                                <p><a href="../product/{{$single->id}}"><strong>{{$single->product_name}}</strong></a></p>
+                                <p>{{$single->product_type}}</p>
+                                <p>{{$single->product_description}}</p>
+                                <p>Price: £{{$single->product_price}}</p>
+                                <p>Discount Price: £{{$single->price_deduction}}</p>
+                            </div>
                         </div>
-                    </div>
-                @endif
-            @endforeach
-            <br/>
+                    @endif
+                @endforeach
+                <br/>
+            </div>
         </div>
     </div>
 @endsection

@@ -69,3 +69,4 @@ Route::get('/admin/customers', [\App\Http\Controllers\AdminController::class, 's
 Route::get('/admin/orders', [\App\Http\Controllers\AdminController::class, 'showAllOrders'])->name('adminViewOrders');
 
 Route::post('/products/search', [\App\Http\Controllers\Search\SearchController::class, 'searchTarget'])->name('search');
+Route::post('/products/selection', [\App\Http\Controllers\Filters\ProductsFiltersController::class, 'productFilter'])->name('productFilter');

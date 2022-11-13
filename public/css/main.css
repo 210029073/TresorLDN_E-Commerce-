@@ -13,6 +13,7 @@
     flex-direction: row;
     justify-content: start;
     align-content: space-around;
+    width: 80%;
 }
 
 .userContainer {
@@ -100,3 +101,18 @@
 .footer {
     background-color: burlywood;
 }
+
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    width: 100%;
+}
+
+.filters {
+    padding: 4%;
+    width: 20%;
+}
+

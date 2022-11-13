@@ -17,7 +17,7 @@ class ProductsSeeder extends Seeder
      */
     public function run()
     {
-
+        
         Products::create(
             [
                 'product_name' => 'MICKE Computer Desk',
@@ -28,7 +28,7 @@ class ProductsSeeder extends Seeder
                 'image' => 'MICKE Computer Desk.jpg'
             ]
         );
-
+        
         Products::create(
             [
                 'product_name' => 'Three Seat Sofa',
@@ -38,7 +38,7 @@ class ProductsSeeder extends Seeder
                 'image' => 'Three Seat Sofa.jpg'
             ]
         );
-
+        
         Products::create([
             'product_name' => 'Corner Flakarp Sofa',
             'product_type' => 'Sofa',
@@ -47,7 +47,7 @@ class ProductsSeeder extends Seeder
             'price_deduction' => 58.50,
             'image' => 'Corner Flakarp Sofa.jpg'
         ]);
-
+        
         Products::create([
             'product_name' => 'Strandmon Recliner Nordvalla Dark Grey',
             'product_type' => 'Chair',
@@ -56,7 +56,7 @@ class ProductsSeeder extends Seeder
             'price_deduction' => 75.50,
             'image' => 'Strandmon Recliner Nordvalla Dark Grey.jpg'
         ]);
-
+        
         Products::create([
             'product_name' => 'Double Sized Upholstered bed, with two storage boxes, Kabusa light grey',
             'product_type' => 'Bed',
@@ -65,7 +65,7 @@ class ProductsSeeder extends Seeder
             'price_deduction' => 32.50,
             'image' => 'Double Sized Upholstered Bed.jpg'
         ]);
-
+        
         Products::create([
             'product_name' => 'Single Sized Reversible bed, white/pine',
             'product_type' => 'Bed',
@@ -74,7 +74,7 @@ class ProductsSeeder extends Seeder
             'price_deduction' => 38.49,
             'image' => 'Single Sized Reversible Bed.jpg'
         ]);
-
+        
         Products::create([
             'product_name' => 'Office Desk',
             'product_type' => 'Table',

@@ -1,4 +1,7 @@
 @extends('layouts.app')
+<head>
+    <link rel="stylesheet" href="css/main.css">
+</head>
 @section('content')
     <div class="container">
         <div class="product-selection">
@@ -28,8 +31,6 @@
                 </div>
             </div>
         </div>
-
-        <h1>Showing sofas</h1>
         <div class="products-container">
             <div class="filters">
                 <form method="POST" action="{{route('productFilter')}}">
@@ -53,18 +54,16 @@
             </div>
             <div class="products">
                 @foreach($products as $single)
-                    @if($single->product_type == "Sofa")
-                        <div class="product">
-                            <div class="product-body">
-                                <img class="col justify-content-center" src="{{asset("jpg/$single->image")}}" width="480" height="240"/>
-                                <p><a href="../product/{{$single->id}}"><strong>{{$single->product_name}}</strong></a></p>
-                                <p>{{$single->product_type}}</p>
-                                <p>{{$single->product_description}}</p>
-                                <p>Price: £{{$single->product_price}}</p>
-                                <p>Discount Price: £{{$single->price_deduction}}</p>
-                            </div>
+                    <div class="product">
+                        <div class="product-body">
+                            <img class="col justify-content-center" src="{{asset("jpg/$single->image")}}" width="480" height="240"/>
+                            <p><a href="product/{{$single->id}}"><strong>{{$single->product_name}}</strong></a></p>
+                            <p>{{$single->product_type}}</p>
+                            <p>{{$single->product_description}}</p>
+                            <p>Price: £{{$single->product_price}}</p>
+                            <p>Discount Price: £{{$single->price_deduction}}</p>
                         </div>
-                    @endif
+                    </div>
                 @endforeach
                 <br/>
             </div>
