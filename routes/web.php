@@ -44,7 +44,7 @@ Route::get('home', function () {
 
 
 Route::get('/product/{id}', '\App\Http\Controllers\ProductsController@showId');
-Route::get('/products/product/{id}', '\App\Http\Controllers\ProductsController@showId')->name('product');
+// Route::get('/products/product/{id}', '\App\Http\Controllers\ProductsController@showId')->name('product');
 
 
 Route::get('/basket', [\App\Http\Controllers\BasketCollectionController::class, 'showAll'])->name('basket');
