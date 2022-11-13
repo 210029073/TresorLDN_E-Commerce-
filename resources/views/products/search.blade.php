@@ -36,7 +36,7 @@
                     <h5>Specify Price</h5>
                     <label for="price">Specify Price</label>
                     <input type="range" name="priceInput" placeholder="Between £0 to £1000" min="0" max="1000" oninput="this.form.priceRange.value=this.value"/>
-                    <input type="number" name="priceRange" value="£0" min="0" max="1000" oninput="this.form.priceInput.value=this.value"/>
+                    <input type="number" name="priceRange" value="0" min="0" max="1000" oninput="this.form.priceInput.value=this.value"/>
                     <br/><br/>
                     <h5>Specify Furniture</h5>
                     <input type="radio" id="sofas" name="furniture" value="Sofa"/>

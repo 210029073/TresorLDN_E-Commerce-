@@ -120,7 +120,36 @@
     </div>
 
     <footer class="footer">
-        <span>@Copyright 2022 TresorLDN Limited Company</span>
+        <br/>
+        <br/>
+        <span>
+            <center>Copyright 2022 TresorLDN Limited Company</center>
+        </span>
+        <br/>
+        <span>
+            <center>TresorLDN a limited company that advertises and sells various 
+                homeware products for all customers and businesses.
+            </center>
+        </span>
+        <span>
+            <center>Providing customer satisfaction
+                by selling products that can be tailored to meet the customers needs.
+            </center>
+        </span>
+        <br/>
+        <span>
+            <center>Our website is powered by Laravel a PHP Framework created by <a href="https://github.com/taylorotwell">Taylor Otwell</a></center>
+        </span>
+        <br/>
+        <span>
+            <center>
+                <img src="{{asset("svg/logo-no-background.svg")}}" width="250" height="35"/>
+            </center>
+        </span>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
     </footer>
 </body>
 </html>
