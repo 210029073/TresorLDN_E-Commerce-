@@ -16,13 +16,19 @@ class SearchController extends \App\Http\Controllers\Controller
         //first we need to get their input
         $query = $request->searchTarget;
 //        dd($query);
-        $result = DB::table('products')
-            ->where('product_name', 'LIKE', '%' . $query . '%')
-            ->orWhere('product_name', 'LIKE', '%' . $query . '%')
-        ->get();
-
+        $result = array();
+        if($query != null) {
+            $result = DB::table('products')
+                ->where('product_name', 'LIKE', '%' . $query . '%')
+                ->orWhere('product_type', 'LIKE', '%' . $query . '%')
+            ->get();
 //        $result->appends(['search'=>$query]);
-
+        }
+        
+        if(count($result) == 0) {
+            $result = array();
+        }
+        
 //        return view('products.search', compact('result'));
         return view('products.search', ['result'=>$result]);
 

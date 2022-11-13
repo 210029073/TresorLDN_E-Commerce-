@@ -16,6 +16,13 @@ class ProductsFiltersController extends \App\Http\Controllers\Controller
         //retrieve data from form
         $price = $request->priceRange;
         $productType = $request->furniture;
+        
+        $isBothEmpty = $productType == null && $price == null;
+        if($isBothEmpty) {
+            $result = DB::table('products')
+            ->get();
+            return view('products.selection', array('products' => $result));
+        }
 
         if($productType == null) {
             $result = DB::table('products')->where('product_price', "<=" ,$price)
