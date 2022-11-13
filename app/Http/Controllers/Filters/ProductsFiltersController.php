@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class ProductsFiltersController extends \App\Http\Controllers\Controller
 {
+    private $data;
+
     public function productFilter(Request $request) {
         //empty array
         $result = array();
@@ -33,6 +35,12 @@ class ProductsFiltersController extends \App\Http\Controllers\Controller
         }
 //        dd($result);
 
+        $this->data = $result;
         return view('products.selection', array('products' => $result));
+    }
+
+    public function getResult() {
+        dd($this->data);
+        return array($this->data);
     }
 }
