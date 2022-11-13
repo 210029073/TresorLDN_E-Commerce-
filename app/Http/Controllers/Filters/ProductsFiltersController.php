@@ -17,7 +17,6 @@ class ProductsFiltersController extends \App\Http\Controllers\Controller
         $price = $request->priceRange;
         $productType = $request->furniture;
 
-//        dd($price);
         if($productType == null) {
             $result = DB::table('products')->where('product_price', "<=" ,$price)
             ->get();
@@ -33,14 +32,12 @@ class ProductsFiltersController extends \App\Http\Controllers\Controller
                 ->where('product_type' ,$productType)
                 ->get();
         }
-//        dd($result);
 
         $this->data = $result;
         return view('products.selection', array('products' => $result));
     }
 
     public function getResult() {
-        dd($this->data);
         return array($this->data);
     }
 }
