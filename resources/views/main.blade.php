@@ -23,6 +23,8 @@
                         <a href="{{'contacts'}}">To Visit Contact Us</a>
                         <br/>
                         <a href="{{'about'}}">To Visit About Us</a>
+</br>
+                        <a href="{{'C:\xampp\htdocs\TresorLDN_E-Commerce-\resources\views\review.blade.php'}}">This is the review us page</a>
                     </div>
                 </div>
             </div>
