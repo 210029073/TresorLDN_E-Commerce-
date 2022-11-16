@@ -15,6 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    Please edit the main.blade.php file
                 </div>
             </div>
         </div>

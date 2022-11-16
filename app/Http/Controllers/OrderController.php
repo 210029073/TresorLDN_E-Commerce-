@@ -24,10 +24,13 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($user_id, $total)
     {
         //
+        Order::create(['id'=>$user_id, 'total'=>$total]);
+
     }
+
 
     /**
      * Store a newly created resource in storage.

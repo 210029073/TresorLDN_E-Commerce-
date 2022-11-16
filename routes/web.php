@@ -27,7 +27,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main');
+});
+
+Route::get('about', function() {
+    return view('about');
 });
 
 Route::get('contacts', function () {
@@ -39,15 +43,31 @@ Route::get('home', function () {
 });
 
 
-Route::get('product', function () {
-    return view('product');
-});
+Route::get('/product/{id}', '\App\Http\Controllers\ProductsController@showId');
+// Route::get('/products/product/{id}', '\App\Http\Controllers\ProductsController@showId')->name('product');
 
 
-Route::get('products', function () {
-    return view('products');
-});
+Route::get('/basket', [\App\Http\Controllers\BasketCollectionController::class, 'showAll'])->name('basket');
+
+Route::get('/products', [\App\Http\Controllers\ProductsController::class, 'index'])->name('products');
+Route::get('/products/tables', [\App\Http\Controllers\ProductsController::class, 'showTables'])->name('tables');
+Route::get('/products/sofas', [\App\Http\Controllers\ProductsController::class, 'showSofas'])->name('sofas');
+Route::get('/products/chairs', [\App\Http\Controllers\ProductsController::class, 'showChairs'])->name('chairs');
+Route::get('/products/beds', [\App\Http\Controllers\ProductsController::class, 'showBeds'])->name('beds');
+Route::post('/addItem', [\App\Http\Controllers\ProductsController::class, 'addItem']);
+Route::get('/removeItem', [\App\Http\Controllers\BasketCollectionController::class, 'removeItem']);
+
+Route::post('/basket/createOrder', [\App\Http\Controllers\OrderlineController::class, 'createOrder']);
+
+Route::get('/pastOrders', [\App\Http\Controllers\OrderlineController::class, 'viewPastOrders'])->name('pastOrders');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/admin', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+Route::get('/admin/customers', [\App\Http\Controllers\AdminController::class, 'showAllCustomers'])->name('adminViewCustomers');
+Route::get('/admin/orders', [\App\Http\Controllers\AdminController::class, 'showAllOrders'])->name('adminViewOrders');
+
+Route::post('/products/search', [\App\Http\Controllers\Search\SearchController::class, 'searchTarget'])->name('search');
+Route::post('/products/selection', [\App\Http\Controllers\Filters\ProductsFiltersController::class, 'productFilter'])->name('productFilter');

@@ -13,15 +13,29 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{asset("css/main.css")}}">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
 </head>
+
 <body>
+<?php
+    //session_start();
+    header("url=route('home')");
+    use App\Http\Controllers\HomeController;
+
+    HomeController::generateCookie();
+
+    //dd($_COOKIE)
+    ?>
+    
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+{{--                    {{ config('app.name', 'Laravel') }}--}}
+                    <img src="{{asset("svg/logo-no-background.svg")}}" width="175" height="35"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -29,9 +43,15 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
+{{--                    <ul class="navbar-nav me-auto">--}}
+                        <div class="searchBarContainer">
+                            <form method="POST" action="{{route('search')}}">
+                                @csrf
+                                <input type="text" placeholder="Enter a search" name="searchTarget"/>
+                                <button type="submit">Search</button>
+                            </form>
+                        </div>
+{{--                    </ul>--}}
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -65,16 +85,71 @@
                                         @csrf
                                     </form>
                                 </div>
+
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('basket')}}">
+                                    My Basket
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="{{route('pastOrders')}}">
+                                    View Past Orders
+                                </a>
+                            </li>
+                            @if(\Illuminate\Support\Facades\Auth::user()->isAdmin == 1)
+                                <li>
+                                    <a class="nav-link" href="{{route('admin')}}">
+                                        Admin View
+                                    </a>
+                                </li>
+                            @endif
+                            @if(\Illuminate\Support\Facades\Auth::user()->user_status == 'online')
+                                <li>
+                                    <a class="nav-link">Online</a>
+                                </li>
+                            @endif
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+
+    <footer class="footer">
+        <br/>
+        <br/>
+        <span>
+            <center>Copyright 2022 TresorLDN Limited Company</center>
+        </span>
+        <br/>
+        <span>
+            <center>TresorLDN a limited company that advertises and sells various 
+                homeware products for all customers and businesses.
+            </center>
+        </span>
+        <span>
+            <center>Providing customer satisfaction
+                by selling products that can be tailored to meet the customers needs.
+            </center>
+        </span>
+        <br/>
+        <span>
+            <center>Our website is powered by Laravel a PHP Framework created by <a href="https://github.com/taylorotwell">Taylor Otwell</a></center>
+        </span>
+        <br/>
+        <span>
+            <center>
+                <img src="{{asset("svg/logo-no-background.svg")}}" width="250" height="35"/>
+            </center>
+        </span>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+    </footer>
 </body>
 </html>

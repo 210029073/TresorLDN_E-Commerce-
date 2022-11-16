@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\BasketCollection;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBasketCollectionRequest;
 use App\Http\Requests\UpdateBasketCollectionRequest;
+use App\Models\Products;
+use \Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BasketCollectionController extends Controller
 {
@@ -17,6 +20,59 @@ class BasketCollectionController extends Controller
     public function index()
     {
         //
+        if(Auth::check() && !Auth::guest()) {
+            return view('baskets');
+        }
+
+        return redirect()->route('/');
+    }
+
+    public function showAll() {
+
+        if(Auth::check() && !Auth::guest()) {
+            $basket_collections = BasketCollection::all();
+
+            return view('baskets', ['basket_collections' => $basket_collections]);
+        }
+
+        return redirect()->route('home');
+
+    }
+
+    /**
+     * This will remove an item from the basket.
+     *
+     * @param Request $request for accessing the items via the html form
+     * @return Redirects to the basket page.
+     */
+    public function removeItem(Request $request) {
+        if(Auth::check()) {
+            $id = (int)$request->basket_collection_id;
+            $product_id = (int)$request->product_id;
+            $name = $request->product_name;
+            $type = $request->product_type;
+            $desc = $request->product_description;
+            $price = (double)$request->product_price;
+            $deductions = (double)$request->price_deduction;
+            $user = (int)Auth::id();
+
+            $parsedData = [
+                'basket_collection_id' => $id,
+                'user_id' => $user,
+                'id' => $product_id,
+                'product_name' => $name,
+                'product_type' => $type,
+                'product_price' => $price,
+                'price_deduction' => $deductions,
+                'product_description' => $desc
+            ];
+
+            BasketCollection::where('user_id', $user)->where('basket_collection_id', $id)->delete();
+
+            return redirect()->route('basket');
+        }
+
+        return redirect()->route('home');
     }
 
     /**
@@ -27,6 +83,7 @@ class BasketCollectionController extends Controller
     public function create()
     {
         //
+        return view('products');
     }
 
     /**
