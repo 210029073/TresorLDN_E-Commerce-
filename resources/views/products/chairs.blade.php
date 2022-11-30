@@ -56,7 +56,7 @@
                     @if($single->product_type == "Chair")
                         <div class="product">
                             <div class="product-body">
-                                <img class="col justify-content-center" src="{{asset("jpg/$single->image")}}" width="480" height="240"/>
+                                <img class="img" src="{{asset("jpg/$single->image")}}" width="480" height="240"/>
                                 <p><a href="../product/{{$single->id}}"><strong>{{$single->product_name}}</strong></a></p>
                                 <p>{{$single->product_type}}</p>
                                 <p>{{$single->product_description}}</p>

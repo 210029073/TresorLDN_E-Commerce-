@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\DB;
 class BasketCollectionController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * Displays the basket page if the user is logged in.
+     * If not logged in, it will simply return to the homepage.
+     * 
+     * @author Ibrahim Ahmad <210029073@aston.ac.uk>
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -26,7 +28,16 @@ class BasketCollectionController extends Controller
 
         return redirect()->route('/');
     }
-
+    
+    /**
+     * This will show all orders according to each customer whilst they are logged in.
+     * If not, then it will return to the homepage
+     * 
+     * @author Ibrahim Ahmad (210029073) <210029073@aston.ac.uk>
+     * 
+     * @return This will return the view of the basket page if the user is logged in, otherwise
+     * the homepage
+     */
     public function showAll() {
 
         if(Auth::check() && !Auth::guest()) {
@@ -42,8 +53,9 @@ class BasketCollectionController extends Controller
     /**
      * This will remove an item from the basket.
      *
+     * @author Ibrahim Ahmad (210029073) <210029073@aston.ac.uk>
      * @param Request $request for accessing the items via the html form
-     * @return Redirects to the basket page.
+     * @return Redirects to the basket page, otherwise the homepage if not logged in
      */
     public function removeItem(Request $request) {
         if(Auth::check()) {
@@ -73,6 +85,40 @@ class BasketCollectionController extends Controller
         }
 
         return redirect()->route('home');
+    }
+    
+    /**
+     * This will remove all items from the basket according to the user
+     * 
+     * @author Ibrahim Ahmad (210029073) <210029073@aston.ac.uk>
+     * 
+     * @return This will redirect to the current route which is the current page with a 
+     * success message.
+     */
+    public function removeAll() {
+        $user = Auth::id();
+        $result = BasketCollection::where('user_id', $user)->delete();
+        
+        if($result) {
+            return redirect()->back()->with('emptiedBasket','Successfully removed all items from your basket');
+        }
+
+        return redirect()->back()->with('failedToRemoveAllFromBasket', 'Cannot remove basket is empty!');
+    }
+    
+    /**
+     * This will return the quantity that is within the cart.
+     * 
+     * @author Ibrahim Ahmad (210029073) <210029073@aston.ac.uk>
+     */
+    public function size() {
+        $cart = BasketCollection::where('user_id', Auth::id())->get();
+        
+        if(count($cart) > 0) {
+            return count($cart);
+        }
+
+        return 0;
     }
 
     /**
@@ -140,5 +186,16 @@ class BasketCollectionController extends Controller
     public function destroy(BasketCollection $basketCollection)
     {
         //
+    }
+    
+    /**
+     * This will return a product according to the selected id number
+     *
+     * @param integer $id will hold the id number for each product
+     * @return An instance of products
+     * @author Ibrahim Ahmad <210029073@aston.ac.uk>
+     */
+    public function getProductImage(int $id) {
+        return Products::where('id', $id)->first();
     }
 }

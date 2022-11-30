@@ -60,7 +60,12 @@ class ProductsController extends Controller
     }
 
     protected $Products;
-
+    /**
+     * This will show a list of products, and will perform pagination.
+     * 
+     * @author Ibrahim Ahmad <210029073@aston.ac.uk>
+     *
+     */
     public function showAllProducts(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $all = DB::table('products')
@@ -69,6 +74,12 @@ class ProductsController extends Controller
         return view('/products', compact('all'));
     }
 
+    /**
+     * This will show all products.
+     *
+     * @author Ibrahim Ahmad <210029073@aston.ac.uk>
+     * @return void
+     */
     public function showAll() {
 //        $products = Products::where('product_type', '=', 'Table')
 //        ->get();
@@ -77,6 +88,12 @@ class ProductsController extends Controller
         return view('/products', ['products'=>$products]);
     }
 
+    /**
+     * This will show all products regarding a table.
+     *
+     * @author Ibrahim Ahmad <210029073@aston.ac.uk>
+     * @return void
+     */
     public function showTables() {
 //        $products = Products::where('product_type', '=', 'Table')
 //        ->get();
@@ -85,6 +102,12 @@ class ProductsController extends Controller
         return view('/products/tables', ['products'=>$products]);
     }
 
+    /**
+     * This will show all products regarding a bed.
+     *
+     * @author Ibrahim Ahmad <210029073@aston.ac.uk>
+     * @return void
+     */
     public function showBeds() {
 //        $products = Products::where('product_type', '=', 'Table')
 //        ->get();
@@ -93,6 +116,12 @@ class ProductsController extends Controller
         return view('/products/beds', ['products'=>$products]);
     }
 
+    /**
+     * This will show all products regarding sofa.
+     *
+     * @author Ibrahim Ahmad <210029073@aston.ac.uk>
+     * @return void
+     */
     public function showSofas() {
 //        $products = Products::where('product_type', '=', 'Table')
 //        ->get();
@@ -101,6 +130,11 @@ class ProductsController extends Controller
         return view('/products/sofas', ['products'=>$products]);
     }
 
+    /**
+     * This will show all products regarding chairs.
+     *
+     * @author Ibrahim Ahmad <210029073@aston.ac.uk>
+     */
     public function showChairs() {
 //        $products = Products::where('product_type', '=', 'Table')
 //        ->get();
@@ -108,6 +142,12 @@ class ProductsController extends Controller
         #dd($products);
         return view('/products/chairs', ['products'=>$products]);
     }
+
+    /**
+     * This will add items to the basket for each customer.
+     *
+     * @author Ibrahim Ahmad <210029073@aston.ac.uk>
+     */
     public function addItem(Request $request) {
         if(Auth::check() && !Auth::guest()) {
             $id = $request->product_id;
@@ -128,12 +168,18 @@ class ProductsController extends Controller
             );
             DB::table('basket_collections')->insert($data);
 //        dd(intval($request->product_price));
-            return redirect()->route('products');
+            return redirect()->route('products')->with('test', 'Item added: ' . $name);
         }
 
         return redirect()->route('products');
     }
 
+        /**
+     * This will show a single product according to the product that was selected by the user.
+     *
+     * @author Ibrahim Ahmad <210029073@aston.ac.uk>
+     * @return void
+     */
     public function showId($id) {
         $products = Products::find($id);
         return view('/product', array('products' => $products));

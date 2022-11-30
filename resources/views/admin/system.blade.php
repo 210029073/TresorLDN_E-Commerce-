@@ -9,53 +9,51 @@
             <div class="col-md-13">
                 <div class="card">
                     <div class="card-body">
-                        <h1>Admin Page</h1>
-                        <h2>View a List of Customer</h2>
-                        <a href="{{route('adminViewCustomers')}}">View Customers</a>
+                        <strong><?php
 
+use App\Models\Orderline;
+use App\Models\Products;
+use App\Models\User;
+                            // Used for determining the number of:
+                                //Customers registered.
+                                //Orders processed
+                                //Products in stock
+                            $user = new User();
+                            $size = $user->size();
+                            
+                            $orderline = new Orderline();
+                            $orderSize = $orderline->size();
+                            
+                            $product = new Products();
+                            $prodSize = $product->size();
+                        ?></strong>
+                        <h1>Admin Dashboard</h1>
                         <div class="userContainer">
-                            @foreach (App\Http\Controllers\AdminController::getCustomers() as $collection)
-                                @foreach ($collection as $customer)
-                                <div class="order_table">
-                                    <div id="order-header">
-                                            <span>
-                                                Customer ID
-                                            </span>
-                                        <br/>
-                                        <span>
-                                                <strong>{{$customer->id}}</strong>
-                                            </span>
-    
-                                    </div>
-    
-                                    <div id="customer-orders">
-                                        <p>Customer First Name: {{$customer->user_first_name}}</p>
-                                        <p>Customer Last Name: {{$customer->user_last_name}}</p>
-                                        @if($customer->user_status == "online")
-                                            <p>User Status: Is Online</p>
-                                        @else
-                                            <p>User Status: Is Offline</p>
-                                        @endif
-                                        <p>Customer Address Line 1: {{$customer->user_address_line_1}}</p>
-                                        <p>Customer Address Line 2: {{$customer->user_address_line_2}}</p>
-                                        <p>Customer Post Code: {{$customer->user_postcode}}</p>
-                                        <p>Customer email address: {{$customer->email}}</p>
-                                        @if($customer->isAdmin == 1)
-                                            <p>User Account type: Admin</p>
-                                        @else
-                                            <p>User Account type: Customer</p>
-                                        @endif
-                                        <p>Joined us since: {{$customer->created_at}}</p>
-                                    </div>
+                        <div class="adminCard">
+                                <div class="adminCardContent">
+                                    <a href="{{route('adminViewCustomers')}}"><h2>View Customers</h2></a>
                                 </div>
-                                <br/>
-                                @endforeach                             
-                            @endforeach
-                        </div>
-                        
-                        <h2>View Orders</h2>
-                        <a href="{{route('adminViewOrders')}}">View Orders</a>
-                        
+                                <div class="adminCardTitle">
+                                    <strong><p>Currently {{$size}} customers registered</p></strong>
+                                </div>
+                            </div>
+                            <div class="adminCard">
+                                <div class="adminCardContent">
+                                    <a href="{{route('adminViewOrders')}}"><h2>View Orders</h2></a>
+                                </div>
+                                <div class="adminCardTitle">
+                                    <strong><p>Currently {{$orderSize}} orders processed</p></strong>
+                                </div>
+                            </div>
+                            <div class="adminCard">
+                                <div class="adminCardContent">
+                                    <a href="{{route('adminViewProducts')}}"><h2>View Products</h2></a>
+                                </div>
+                                <div class="adminCardTitle">
+                                    <strong><p>Currently {{$prodSize}} products in stock</p></strong>
+                                </div>
+                            </div>
+                        </div>     
                     </div>
                 </div>
                 <br/>

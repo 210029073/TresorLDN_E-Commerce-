@@ -1,5 +1,4 @@
-<p align="center"><a href="" target="_blank"><img src="https://github.com/210029073/TresorLDN_E-Commerce-/blob/develop/public/svg/logo-no-background.svg" width="400" alt="TresorLDN Logo"></a></p>
-
+![a](/210029073/tresorldn_e-commerce/-/blob/main/public/svg/logo-no-background.svg)
 ## About TresorLDN 
 As part of TresorLDN's slogan: Furniture that is tailored for you...
 

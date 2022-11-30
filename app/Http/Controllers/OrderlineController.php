@@ -33,7 +33,22 @@ class OrderlineController extends Controller
     {
         //
     }
+    
+    /**
+     * This will remove the all items from basket once order has been processed
+     * 
+     * @author Ibrahim Ahmad (210029073) <210029073@aston.ac.uk>
+     */
+    private function removeBasketsAfterOrder() {
+        BasketCollection::where('user_id', Auth::id())->delete();
+    }
 
+    /**
+     * This will create an order for corresponding customer.
+     * 
+     * @param $request This is used to retrieve the data from the forms using html requests
+     * @author Ibrahim Ahmad (210029073) <210029073@aston.ac.uk>
+     */
     public function createOrder(Request $request) {
 //        $product_id = (int) $request->product_id;
 //        $name = $request->product_name;
@@ -90,9 +105,19 @@ class OrderlineController extends Controller
 //
 //        DB::table('orderlines')->insert($parsedData);
         }
-        return redirect()->route('products');
-    }
+        
+        //this will remove items from the basket
+        $this->removeBasketsAfterOrder();
 
+        return redirect()->route('products')->with('addOrder', 'Successfully processed your order!');
+    }
+    
+    /**
+     * This is used to view past orders.
+     * 
+     * @return This returns a view with the array holding the orders.
+     * @author Ibrahim Ahmad <210029073@aston.ac.uk>
+     */
     public function viewPastOrders() {
         if(Auth::check()) {
             $result = array();

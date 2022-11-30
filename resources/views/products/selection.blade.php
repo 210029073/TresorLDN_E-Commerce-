@@ -57,7 +57,7 @@
                     <div class="product">
                         <div class="product-body">
                             <img class="col justify-content-center" src="{{asset("jpg/$single->image")}}" width="480" height="240"/>
-                            <p><a href="product/{{$single->id}}"><strong>{{$single->product_name}}</strong></a></p>
+                            <p><a href="../products/product/{{$single->id}}"><strong>{{$single->product_name}}</strong></a></p>
                             <p>{{$single->product_type}}</p>
                             <p>{{$single->product_description}}</p>
                             <p>Price: £{{$single->product_price}}</p>

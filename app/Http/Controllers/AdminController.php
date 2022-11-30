@@ -36,6 +36,21 @@ class AdminController extends Controller
     }
 
     /**
+     * This will return the view of products.
+     * 
+     * @author Ibrahim <210029073@aston.ac.uk>
+     *
+     * @return void
+     */
+    public function showAdminProducts() {
+        //get the customers
+        //return them as an array
+        $result = DB::table('users')->get();
+//        dd($result);
+        return view('admin.products');
+    }
+
+    /**
      * This will retrieve the customer's details
      *
      * @author Ibrahim Ahmad <210029073@aston.ac.uk>

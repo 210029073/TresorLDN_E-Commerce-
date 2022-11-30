@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('product_type');
             $table->float('product_price');
             $table->string('image')->nullable(true);
-            $table->boolean('is_discount_applied')->default(true);
+            $table->boolean('is_discount_applied')->default(false);
             $table->float('price_deduction')->default(0);
             $table->string('product_description')->nullable(true);
             $table->timestamps();

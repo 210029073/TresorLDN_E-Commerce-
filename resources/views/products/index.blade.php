@@ -3,6 +3,12 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 @section('content')
+@if (session()->has('test'))
+    <h1 class="alert alert-success text-bg-success" role="alert">{{session()->get('test')}}</h1>
+@endif
+@if (session()->has('addOrder'))
+    <h1 class="alert alert-success text-bg-success" role="alert">{{session()->get('addOrder')}}</h1>
+@endif
     <div class="container">
         <div class="product-selection">
             <div class="product-item">
@@ -51,12 +57,12 @@
             @foreach($products as $single)
             <div class="product">
                 <div class="product-body">
-                    <img class="col justify-content-center" src="{{asset("jpg/$single->image")}}" width="480" height="240"/>
+                    <img class="img" src="{{asset("jpg/$single->image")}}"/>
                     <p><a href="product/{{$single->id}}"><strong>{{$single->product_name}}</strong></a></p>
                     <p>{{$single->product_type}}</p>
                     <p>{{$single->product_description}}</p>
-                    <p>Price: £{{$single->product_price}}</p>
-                    <p>Discount Price: £{{$single->price_deduction}}</p>
+                    <p>Price: £{{number_format($single->product_price,2)}}</p>
+                    <p>Discount Price: £{{number_format($single->price_deduction,2)}}</p>
                 </div>
             </div>
             @endforeach

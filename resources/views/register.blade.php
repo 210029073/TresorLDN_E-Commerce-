@@ -22,6 +22,7 @@
     </head>
     <body class="antialiased">
         <h1>Register Page</h1>
+        <!-- A registration form for creating a user account with relevant sections -->
         <form method="POST" action="{{ route('register.custom') }}">
             @csrf
             <?php
