@@ -6,6 +6,10 @@ TresorLDN is a limited company that advertises and sells various homeware produc
 
 They will advertise products that will be tailored for the customer in order to promote customer satisfaction.
 
+## Setup TresorLDN E-Commerce System
+For information with regards the setup of the laravel project, please follow the instructions as provided here:
+https://github.com/210029073/TresorLDN_E-Commerce-/issues/11
+
 ## TresorLDN Online Shopping System
 TresorLDN's e-commerce website will not only allows its customers to perform purchases online, but it will also enable to perform orders even if it is past-opening times, such as during out-of-hours, and it will advertise their homeware products whether if its:
 
